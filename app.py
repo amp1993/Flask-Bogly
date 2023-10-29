@@ -47,20 +47,20 @@ def create_user():
 
 @app.route('/users/<int:user_id>')
 def user_details(user_id):
-    user = User.query.get(user_id)
+    user = User.query.get_or_404(user_id)
     return render_template('user_details.html', user = user)
     
 
 
 @app.route('/users/<int:user_id>/edit')
 def edit_user(user_id):
-    user = User.query.get(user_id)
+    user = User.query.get_or_404(user_id)
     
     return render_template('edit_user.html', user=user, user_id = user_id)
 
 @app.route('/users/<int:user_id>/edit', methods=['POST'])
 def save_edit_user(user_id):
-    user = User.query.get(user_id)
+    user = User.query.get_or_404(user_id)
 
     updated_first_name = request.form['first_name']
     updated_last_name = request.form['last_name']
@@ -78,7 +78,7 @@ def save_edit_user(user_id):
 
 @app.route('/users/<int:user_id>/delete', methods=['POST'])
 def delete_user(user_id):
-    user = User.query.get(user_id)
+    user = User.query.get_or_404(user_id)
     if user:
         db.session.delete(user)
         db.session.commit()
