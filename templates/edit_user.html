@@ -11,11 +11,11 @@
         <h1>Edit a user</h1>
         <form action ='/users/{{user_id}}/edit' method='POST'>
             <label for="first_name">First Name</label>
-            <input type='text' name='first_name' placeholder="Enter a first name" >
+            <input type='text' name='first_name' placeholder={{user.first_name}} >
             <label for="last_name">Last Name</label>
-            <input type='text' name='last_name' placeholder="Enter a last name" >
+            <input type='text' name='last_name' placeholder={{user.last_name}} >
             <label for="image_url">Image URL</label>
-            <input type='text' name='image_url' placeholder="Provide an image of this user" >
+            <input type='text' name='image_url' placeholder={{user.image_url}} >
         
             <button>Save</button>
         </form>

@@ -9,13 +9,13 @@
     </head>
     <body>
         <h1>{{user.full_name}}</h1>
-        <img src= '{{user.image_url}' alt="User Image">
+        <img src= '{{user.image_url}}' alt="User Image">
 
-        <form action='/users/{{user_id}}/edit'>
+        <form action='/users/{{user.id}}/edit'>
             <button>Edit</button>
         </form>
 
-        <form action='/users/{{user_id}}/delete' method="POST">
+        <form action='/users/{{user.id}}/delete' method="POST">
             <button type='submit'>Delete</button>
         </form>
         

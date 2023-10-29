@@ -47,8 +47,8 @@ def create_user():
 
 @app.route('/users/<int:user_id>')
 def user_details(user_id):
-    users = User.query.get(user_id)
-    return render_template('user_details.html', users = users)
+    user = User.query.get(user_id)
+    return render_template('user_details.html', user = user)
     
 
 
@@ -56,14 +56,23 @@ def user_details(user_id):
 def edit_user(user_id):
     user = User.query.get(user_id)
     
-    return render_template('edit_user.html', user_id = user_id)
+    return render_template('edit_user.html', user=user, user_id = user_id)
 
 @app.route('/users/<int:user_id>/edit', methods=['POST'])
 def save_edit_user(user_id):
     user = User.query.get(user_id)
-    first_name = request.form['first_name']
-    last_name = request.form['last_name']
-    image_url = request.form['image_url']
+
+    updated_first_name = request.form['first_name']
+    updated_last_name = request.form['last_name']
+    updated_image_url = request.form['image_url']
+    
+    if user:
+        user.first_name = updated_first_name
+        user.last_name = updated_last_name
+        user.image_url = updated_image_url
+        
+        db.session.commit()
+        
     
     return redirect(f'/users/{user_id}')
 
@@ -73,7 +82,7 @@ def delete_user(user_id):
     if user:
         db.session.delete(user)
         db.session.commit()
-        return f"User with ID {user_id} has been deleted."
+        return redirect('/')
     return f"User with ID {user_id} not found."
     
     
