@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        
+        <title>Blogly</title>
+        
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <h1>Edit a user</h1>
+        <form action ='/users/{{user_id}}/edit' method='POST'>
+            <label for="first_name">First Name</label>
+            <input type='text' name='first_name' placeholder="Enter a first name" >
+            <label for="last_name">Last Name</label>
+            <input type='text' name='last_name' placeholder="Enter a last name" >
+            <label for="image_url">Image URL</label>
+            <input type='text' name='image_url' placeholder="Provide an image of this user" >
+        
+            <button>Save</button>
+        </form>
+        <form action='/users/{{user_id}}'>
+            <button type='submit'>Cancel</button>
+        </form>
+  
+        <script src="" async defer></script>
+    </body>
+</html>
