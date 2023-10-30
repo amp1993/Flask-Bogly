@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bogly</title>
+</head>
+<body>
+    <h1>{{post.title}}</h1>
+    <p>{{post.content}}</p>
+
+    <form action='/posts/{{post.id}}'>
+        <button type="submit" id='cancel-button'>Cancel</button>
+    </form>
+   
+    <form action='/posts/{{post.id}}/edit'>
+        <button id='edit-button'>Edit</button>
+    </form>
+    <form action='/posts/{{post.id}}/delete' method="POST">
+        <button id='Delete-button'>Delete</button>
+    </form>
+</body>
+</html>

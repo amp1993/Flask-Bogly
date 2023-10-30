@@ -9,7 +9,7 @@
     </head>
     <body>
         <h1>{{user.full_name}}</h1>
-        <img src= '{{user.image_url}}' alt="User Image">
+        <img src= '{{user.image_url}}'>
 
         <form action='/users/{{user.id}}/edit'>
             <button>Edit</button>
@@ -18,7 +18,19 @@
         <form action='/users/{{user.id}}/delete' method="POST">
             <button type='submit'>Delete</button>
         </form>
-        
+
+        <h1>Posts</h1>
+       
+     
+        {% for post in user.posts %}
+        <ul>
+            <li><a href='/posts/{{post.id}}'>{{post.title}}</a></li>
+        </ul>
+        {% endfor %}
+
+        <form action="/users/{{user.id}}/posts/new">
+            <button type="submit">Add Post</button>
+        </form>
         <script src="" async defer></script>
     </body>
 </html>
