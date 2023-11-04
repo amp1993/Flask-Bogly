@@ -1,13 +1,6 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
-<html>
-    <head>
-        
-        <title>Blogly</title>
-        
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
+{% block content %}
         <h1>Create a User</h1>
         <form action ='/users/new' method="POST">
             <label for="first_name">First Name</label>
@@ -20,5 +13,4 @@
             <button>Add</button>
         </form>
         <script src="" async defer></script>
-    </body>
-</html>
+{% endblock %}

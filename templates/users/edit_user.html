@@ -1,13 +1,6 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
-<html>
-    <head>
-        
-        <title>Blogly</title>
-        
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
+{% block content %}
         <h1>Edit a user</h1>
         <form action ='/users/{{user_id}}/edit' method='POST'>
             <label for="first_name">First Name</label>
@@ -24,5 +17,4 @@
         </form>
   
         <script src="" async defer></script>
-    </body>
-</html>
+{% endblock %}

@@ -1,13 +1,6 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
-<html>
-    <head>
-        
-        <title>Blogly</title>
-        
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
+{% block content %}
         <h1>{{user.full_name}}</h1>
         <img src= '{{user.image_url}}'>
 
@@ -31,6 +24,4 @@
         <form action="/users/{{user.id}}/posts/new">
             <button type="submit">Add Post</button>
         </form>
-        <script src="" async defer></script>
-    </body>
-</html>
+{% endblock %}

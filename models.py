@@ -33,11 +33,26 @@ class Post(db.Model):
     
     
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    title = db.Column(db.String(30), nullable=False)
+    title = db.Column(db.Text, nullable=False)
     content = db.Column(db.Text, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-
-
     
+
+class Tag(db.Model):
+    
+    __tablename__='tags'
+    
+    id = db.Column (db.Integer, primary_key=True)
+    name = db.Column(db.Text, nullable=False)
+    posts = db.relationship('Post',secondary='post_tags',backref='tags')
+
+
+ 
+class PostTag(db.Model):
+    
+    __tablename__= 'post_tags'
+    
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'), primary_key=True)
+    tag_id = db.Column(db.Integer, db.ForeignKey('tags.id'), primary_key=True)
 
