@@ -6,7 +6,7 @@ from flask_migrate import Migrate
 # from flask_debugtoolbar import DebugToolbarExtension
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql:///blogly"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql:///blogly_final"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'ihaveasecret'
 
@@ -119,27 +119,31 @@ def show_post_details(post_id):
     tag = Tag.query.all()
 
     
-    return render_template('posts/post_details.html',post=post,)
+    return render_template('posts/post_details.html',post=post,tag=tag)
     
 @app.route('/posts/<int:post_id>/edit',)
 def show_edit_form(post_id):
     post = Post.query.get_or_404(post_id)
+    tag = Tag.query.all()
+
     
-    
-    return render_template('posts/edit_post.html',post=post)
+    return render_template('posts/edit_post.html',post=post,tag=tag)
 
 
 @app.route('/posts/<int:post_id>/edit', methods=['POST'])
-def edit_form(post_id):
+def edit_post(post_id):
     
     post=Post.query.get_or_404(post_id)
     post.title = request.form['edit-title'],
-    post. content = request.form['edit-content']
+    post.content = request.form['edit-content']
+    
+    tag_ids = [int(num) for num in request.form.getlist("tags")]
+    post.tags = Tag.query.filter(Tag.id.in_(tag_ids)).all()
     
     db.session.add(post)
     db.session.commit()
     
-    return redirect (f'/posts/{post_id}')
+    return redirect (f'/users/{post.user_id}')
 
 
 @app.route('/posts/<int:post_id>/delete', methods=['POST'])

@@ -2,7 +2,10 @@
 
 {% block content %}
         <h1>{{user.full_name}}</h1>
-        <img src= '{{user.image_url}}'>
+    <div class="row">
+        <div class="col-sm-2 col-6">
+        <img src= '{{user.image_url}}' class="img-fluid">
+        </div>
 
         <form action='/users/{{user.id}}/edit'>
             <button>Edit</button>
@@ -24,4 +27,5 @@
         <form action="/users/{{user.id}}/posts/new">
             <button type="submit">Add Post</button>
         </form>
+    </div>
 {% endblock %}
